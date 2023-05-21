@@ -8,11 +8,9 @@ class AbstractController
 {
     private $db;
 
-    public $array_constant;
 
     public function __construct()
     {
-        $this->array_constant = $this->getConstant();
     }
 
     public function getDatabaseConnection()
@@ -50,15 +48,6 @@ class AbstractController
         }
 
         return $object->render($fullPath);
-    }
-
-    public function getConstant()
-    {
-        $path = '../config/constant.ini';
-        
-        $arrayConstant = parse_ini_file($path, true);
-
-        return $arrayConstant;
     }
 
     /**

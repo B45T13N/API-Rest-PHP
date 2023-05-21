@@ -21,30 +21,13 @@ class Database
 
     private function loadConfig()
     {
-        $path = '../config/database.ini';
+        (new DotEnvironment('../.env'))->load();
 
-        if (!file_exists($path)) {
-            throw new \Exception('Missing database config file');
-        }
-
-        $arrayConfig = parse_ini_file($path, true);
-
-        if (
-            !array_key_exists('database', $arrayConfig) ||
-            !array_key_exists('host', $arrayConfig['database']) ||
-            !array_key_exists('user', $arrayConfig['database']) ||
-            !array_key_exists('password', $arrayConfig['database']) ||
-            !array_key_exists('port', $arrayConfig['database']) ||
-            !array_key_exists('database', $arrayConfig['database'])
-        ) {
-            throw new \Exception('Missing config informations');
-        }
-
-        $this->host = $arrayConfig['database']['host'];
-        $this->user = $arrayConfig['database']['user'];
-        $this->password = $arrayConfig['database']['password'];
-        $this->port = $arrayConfig['database']['port'];
-        $this->database = $arrayConfig['database']['database'];
+        $this->host = getenv('DB_HOST');
+        $this->user = getenv('DB_USERNAME');
+        $this->password = getenv('DB_PASSWORD');
+        $this->port = getenv('DB_PORT');
+        $this->database = getenv('DB_DATABASE');
     }
 
     private function connect()

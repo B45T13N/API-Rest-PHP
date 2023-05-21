@@ -16,7 +16,7 @@ class ShopController extends AbstractController
 
     	$db = $this->getDatabaseConnection();
 
-        $list_shop = Shop::getAll($db, 0, $this->array_constant['shop']['nb_shops']);
+        $list_shop = Shop::getAll($db, 0, 15);
 
         echo json_encode($list_shop);
     }
