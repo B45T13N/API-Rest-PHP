@@ -46,5 +46,7 @@ class Loader
         if (!class_exists($name)) {
             throw new \Exception('Class ' . $name . ' doesn\'t exist');
         }
+
+        (new DotEnvironment('../.env'))->load();
     }
 }

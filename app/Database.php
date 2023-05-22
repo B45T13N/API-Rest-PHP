@@ -21,8 +21,6 @@ class Database
 
     private function loadConfig()
     {
-        (new DotEnvironment('../.env'))->load();
-
         $this->host = getenv('DB_HOST');
         $this->user = getenv('DB_USERNAME');
         $this->password = getenv('DB_PASSWORD');
